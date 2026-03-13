@@ -1,0 +1,6 @@
+spring:
+  main:
+    banner-mode: console
+  application:
+    name: aquariuxtrd
+    version: 1.0.0-SNAPSHOT
