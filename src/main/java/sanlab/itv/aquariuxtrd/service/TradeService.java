@@ -11,8 +11,10 @@ import sanlab.itv.aquariuxtrd.dto.response.WalletResponseDto;
 import sanlab.itv.aquariuxtrd.exception.InvalidTradingRequestException;
 import sanlab.itv.aquariuxtrd.exception.ServiceUnavailableException;
 import sanlab.itv.aquariuxtrd.model.Asset;
+import sanlab.itv.aquariuxtrd.model.AuditLog;
 import sanlab.itv.aquariuxtrd.repository.crud.AggregatedPriceRepository;
 import sanlab.itv.aquariuxtrd.repository.crud.AssetRepository;
+import sanlab.itv.aquariuxtrd.repository.crud.AuditLogRepository;
 import sanlab.itv.aquariuxtrd.repository.crud.WalletRepository;
 
 import java.math.BigDecimal;
@@ -26,6 +28,7 @@ public class TradeService {
     private final WalletRepository walletRepository;
     private final AggregatedPriceRepository aggregatedPriceRepository;
     private final AssetRepository assetRepository;
+    private final AuditLogRepository auditLogRepository;
 
     public WalletResponseDto getWallet() {
         var wallet = walletRepository.findFirstByOrderByCreatedAt()
@@ -80,6 +83,21 @@ public class TradeService {
         asset.setQuantity(newQuantity);
         walletRepository.save(wallet);
         assetRepository.save(asset);
+
+        auditLogRepository.save(AuditLog.builder()
+            .userId(wallet.getUserId())
+            .symbol(symbol)
+            .side(side.name())
+            .price(marketPrice)
+            .quantity(req.quantity())
+            .total(total)
+            .build());
+    }
+
+    public List<AuditLog> getHistory() {
+        var wallet = walletRepository.findFirstByOrderByCreatedAt()
+            .orElseThrow(() -> new ServiceUnavailableException("Failed to initialize wallet. Reset the application"));
+        return auditLogRepository.findAllByUserIdOrderByCreatedAtDesc(wallet.getUserId());
     }
 
 }
