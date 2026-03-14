@@ -1,6 +1,6 @@
 package sanlab.itv.aquariuxtrd.repository.restclient;
 
-import sanlab.itv.aquariuxtrd.dto.HoubiPriceDto;
+import sanlab.itv.aquariuxtrd.dto.client.HoubiPriceDto;
 
 import java.util.List;
 

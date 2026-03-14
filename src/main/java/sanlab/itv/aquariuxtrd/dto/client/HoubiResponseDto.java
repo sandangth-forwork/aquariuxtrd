@@ -1,4 +1,4 @@
-package sanlab.itv.aquariuxtrd.dto;
+package sanlab.itv.aquariuxtrd.dto.client;
 
 import java.util.List;
 

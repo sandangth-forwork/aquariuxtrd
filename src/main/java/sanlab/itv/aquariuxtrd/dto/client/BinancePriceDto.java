@@ -1,4 +1,4 @@
-package sanlab.itv.aquariuxtrd.dto;
+package sanlab.itv.aquariuxtrd.dto.client;
 
 public record BinancePriceDto(String symbol,
                               String bidPrice,

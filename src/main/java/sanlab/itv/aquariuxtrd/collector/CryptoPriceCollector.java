@@ -15,7 +15,7 @@ public class CryptoPriceCollector {
 
     private final AggregatedPriceService priceService;
 
-    @Scheduled(fixedRate = 5_000)
+    @Scheduled(fixedRateString = "${app.price-collector.fixed-rate-ms:10000}")
     public void collect() {
         log.info("JOB START at %s".formatted(Instant.now()));
         priceService.aggregate();

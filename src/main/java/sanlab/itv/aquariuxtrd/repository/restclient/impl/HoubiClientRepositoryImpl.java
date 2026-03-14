@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
-import sanlab.itv.aquariuxtrd.dto.HoubiPriceDto;
-import sanlab.itv.aquariuxtrd.dto.HoubiResponseDto;
+import sanlab.itv.aquariuxtrd.dto.client.HoubiPriceDto;
+import sanlab.itv.aquariuxtrd.dto.client.HoubiResponseDto;
 import sanlab.itv.aquariuxtrd.repository.restclient.HoubiClientRepository;
 
 import java.util.Collections;

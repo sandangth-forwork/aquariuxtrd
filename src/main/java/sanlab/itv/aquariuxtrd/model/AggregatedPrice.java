@@ -62,11 +62,11 @@ public class AggregatedPrice {
     @Id
     private String symbol;
 
-    @Column(name = "best_bid", precision = 19, scale = 4)
-    private BigDecimal bestBid;
+    @Column(name = "bid", precision = 20, scale = 6)
+    private BigDecimal bid;
 
-    @Column(name = "best_ask", precision = 19, scale = 4)
-    private BigDecimal bestAsk;
+    @Column(name = "ask", precision = 20, scale = 6)
+    private BigDecimal ask;
 
     @Id
     @CreatedDate

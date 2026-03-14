@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sanlab.itv.aquariuxtrd.model.AggregatedPrice;
 import sanlab.itv.aquariuxtrd.repository.crud.AggregatedPriceRepository;
 import sanlab.itv.aquariuxtrd.repository.restclient.BinanceClientRepository;
@@ -34,6 +35,7 @@ public class AggregatedPriceService {
         this.supportedCryptos = Arrays.stream(supportedCryptos).collect(Collectors.toSet());
     }
 
+    @Transactional
     public void aggregate() {
         Map<String, MutablePair<BigDecimal, BigDecimal>> cache = new HashMap<>();
         var binancePriceLst = binanceClientRepository.get();
@@ -61,8 +63,8 @@ public class AggregatedPriceService {
             cache.entrySet().stream().map(inner ->
                 AggregatedPrice.builder()
                     .symbol(inner.getKey())
-                    .bestBid(inner.getValue().getLeft())
-                    .bestAsk(inner.getValue().getRight())
+                    .bid(inner.getValue().getLeft())
+                    .ask(inner.getValue().getRight())
                     .build()
         ).toList());
     }

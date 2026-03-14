@@ -5,7 +5,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
-import sanlab.itv.aquariuxtrd.dto.BinancePriceDto;
+import sanlab.itv.aquariuxtrd.dto.client.BinancePriceDto;
 import sanlab.itv.aquariuxtrd.repository.restclient.BinanceClientRepository;
 
 import java.util.Collections;

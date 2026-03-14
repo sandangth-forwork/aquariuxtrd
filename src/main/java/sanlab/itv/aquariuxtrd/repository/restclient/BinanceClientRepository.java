@@ -1,6 +1,6 @@
 package sanlab.itv.aquariuxtrd.repository.restclient;
 
-import sanlab.itv.aquariuxtrd.dto.BinancePriceDto;
+import sanlab.itv.aquariuxtrd.dto.client.BinancePriceDto;
 
 import java.util.List;
 
