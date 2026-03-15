@@ -60,7 +60,7 @@ public class TradeService {
         var wallet = walletRepository.findFirstByOrderByCreatedAt()
             .orElseThrow(() -> new ServiceUnavailableException("Failed to initialize wallet. Reset the application"));
         Optional<Asset> assetOptional = assetRepository.findFirstByUserIdAndSymbol(wallet.getUserId(), symbol);
-        BigDecimal marketPrice = ESide.BUY.equals(side) ? aggregatedPrice.getBid() : aggregatedPrice.getAsk();
+        BigDecimal marketPrice = ESide.BUY.equals(side) ? aggregatedPrice.getAsk() : aggregatedPrice.getBid();
         BigDecimal total = marketPrice.multiply(req.quantity());
         if (ESide.BUY.equals(side)) {
             if (wallet.getBalance().compareTo(total) < 0) throw new InvalidTradingRequestException("Insufficient balance");
